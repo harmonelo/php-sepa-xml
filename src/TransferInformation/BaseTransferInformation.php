@@ -101,9 +101,28 @@ class BaseTransferInformation implements TransferInformationInterface
     protected $postalAddress;
 
     /**
+     * @var string
+     */
+    protected $streetName;
+    /**
+     * @var string
+     */
+    protected $postalCode;
+    /**
+     * @var string
+     */
+    protected $townName;
+
+    /**
      * @param int $amount amount in cents
      */
-    public function __construct(int $amount, string $iban, string $name, ?string $identification = null)
+    public function __construct(int $amount,
+                                string $iban,
+                                string $name,
+                                ?string $identification = null,
+                                string $streetName,
+                                string $postalCode,
+                                string $townName)
     {
         if (null === $identification) {
             $identification = $name;
@@ -113,6 +132,9 @@ class BaseTransferInformation implements TransferInformationInterface
         $this->iban = $iban;
         $this->name = StringHelper::sanitizeString($name);
         $this->EndToEndIdentification = StringHelper::sanitizeString($identification);
+        $this->streetName = $streetName;
+        $this->postalCode = $postalCode;
+        $this->townName = $townName;
     }
 
     public function accept(DomBuilderInterface $domBuilder): void
@@ -224,5 +246,20 @@ class BaseTransferInformation implements TransferInformationInterface
     public function setPostalAddress($postalAddress): void
     {
         $this->postalAddress = $postalAddress;
+    }
+
+    public function getStreetName(): string
+    {
+        return $this->streetName;
+    }
+
+    public function getPostalCode(): string
+    {
+        return $this->postalCode;
+    }
+
+    public function getTownName(): string
+    {
+        return $this->townName;
     }
 }

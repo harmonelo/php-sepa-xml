@@ -84,6 +84,22 @@ class GroupHeader
      * @var string
      */
     protected $creationDateTimeFormat = 'Y-m-d\TH:i:s\Z';
+    /**
+     * @var string
+     */
+    protected $streetName;
+    /**
+     * @var string
+     */
+    protected $postalCode;
+    /**
+     * @var string
+     */
+    protected $townName;
+    /**
+     * @var string
+     */
+    protected $country;
 
     /**
      * @param string $messageIdentification Maximum length: 35. Reference Number of the bulk.
@@ -91,12 +107,23 @@ class GroupHeader
      *                                      The first 8 or 11 characters of <Msgld> must match the BIC of the
      *                                      Instructing Agent. The rest of the field can be freely defined.
      */
-    public function __construct(string $messageIdentification, string $initiatingPartyName, bool $isTest = false)
+    public function __construct(string $messageIdentification,
+                                string $initiatingPartyName,
+                                bool $isTest = false,
+                                string $streetName,
+                                string $postalCode,
+                                string $townName,
+                                string $country)
     {
         $this->messageIdentification = $messageIdentification;
         $this->isTest = $isTest;
         $this->initiatingPartyName = StringHelper::sanitizeString($initiatingPartyName);
         $this->creationDateTime = new \DateTime();
+        $this->streetName = $streetName;
+        $this->postalCode = $postalCode;
+        $this->townName = $townName;
+        $this->country = $country;
+
     }
 
     public function accept(DomBuilderInterface $domBuilder): void
@@ -197,5 +224,25 @@ class GroupHeader
     public function getCreationDateTimeFormat(): string
     {
         return $this->creationDateTimeFormat;
+    }
+
+    public function getStreetName(): string
+    {
+        return $this->streetName;
+    }
+
+    public function getPostalCode(): string
+    {
+        return $this->postalCode;
+    }
+
+    public function getTownName(): string
+    {
+        return $this->townName;
+    }
+
+    public function getCountry(): string
+    {
+        return $this->country;
     }
 }

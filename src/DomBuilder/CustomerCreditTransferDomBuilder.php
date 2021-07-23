@@ -93,6 +93,14 @@ class CustomerCreditTransferDomBuilder extends BaseDomBuilder
         $this->currentPayment->appendChild($this->createElement('ReqdExctnDt', $paymentInformation->getDueDate()));
         $debtor = $this->createElement('Dbtr');
         $debtor->appendChild($this->createElement('Nm', $paymentInformation->getOriginName()));
+
+        $address = $debtor->appendChild($this->createElement('PstlAdr'));
+
+        $address->appendChild($this->createElement('StrNm', $paymentInformation->getStreetName()));
+        $address->appendChild($this->createElement('PstCd', $paymentInformation->getPostalCode()));
+        $address->appendChild($this->createElement('TwnNm', $paymentInformation->getTownName()));
+        $address->appendChild($this->createElement('Ctry', $paymentInformation->getCountry()));
+
         $this->currentPayment->appendChild($debtor);
 
         if ($paymentInformation->getOriginBankPartyIdentification() !== null && $this->painFormat === 'pain.001.001.03') {
@@ -159,6 +167,13 @@ class CustomerCreditTransferDomBuilder extends BaseDomBuilder
         // Creditor 2.79
         $creditor = $this->createElement('Cdtr');
         $creditor->appendChild($this->createElement('Nm', $transactionInformation->getCreditorName()));
+
+        $address = $creditor->appendChild($this->createElement('PstlAdr'));
+
+        $address->appendChild($this->createElement('StrNm', $transactionInformation->getStreetName()));
+        $address->appendChild($this->createElement('PstCd', $transactionInformation->getPostalCode()));
+        $address->appendChild($this->createElement('TwnNm', $transactionInformation->getTownName()));
+        $address->appendChild($this->createElement('Ctry', $transactionInformation->getCountry()));
 
         // Creditor address if needed and supported by schema.
         if (in_array($this->painFormat, array('pain.001.001.03'))) {

@@ -14,6 +14,7 @@ class CustomerCreditFacade extends BaseCustomerTransferFileFacade
 {
 
     /**
+     * @param string $paymentName
      * @param array{
      *             id: string,
      *             debtorName: string,
@@ -22,6 +23,7 @@ class CustomerCreditFacade extends BaseCustomerTransferFileFacade
      *             dueDate?: string|\DateTime
      *             } $paymentInformation
      *
+     * @return PaymentInformation
      * @throws InvalidArgumentException
      */
     public function addPaymentInfo(string $paymentName, array $paymentInformation): PaymentInformation
@@ -50,6 +52,7 @@ class CustomerCreditFacade extends BaseCustomerTransferFileFacade
     }
 
     /**
+     * @param string $paymentName
      * @param array{
      *             amount: int,
      *             creditorIban: string,
@@ -61,9 +64,8 @@ class CustomerCreditFacade extends BaseCustomerTransferFileFacade
      *             instructionId?: string
      *             } $transferInformation
      *
-     * @throws InvalidArgumentException
-     *
      * @return CustomerCreditTransferInformation
+     * @throws InvalidArgumentException
      */
     public function addTransfer(string $paymentName, array $transferInformation): TransferInformationInterface
     {

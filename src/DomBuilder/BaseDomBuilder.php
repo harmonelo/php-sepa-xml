@@ -117,6 +117,14 @@ abstract class BaseDomBuilder implements DomBuilderInterface
 
         $initiatingParty = $this->createElement('InitgPty');
         $initiatingPartyName = $this->createElement('Nm', $groupHeader->getInitiatingPartyName());
+
+        $address = $initiatingParty->appendChild($this->createElement('PstlAdr'));
+
+        $address->appendChild($this->createElement('StrNm', $groupHeader->getStreetName()));
+        $address->appendChild($this->createElement('PstCd', $groupHeader->getPostalCode()));
+        $address->appendChild($this->createElement('TwnNm', $groupHeader->getTownName()));
+        $address->appendChild($this->createElement('Ctry', $groupHeader->getCountry()));
+
         $initiatingParty->appendChild($initiatingPartyName);
         if ($groupHeader->getInitiatingPartyId() !== null) {
             $id = $this->createElement('Id', $groupHeader->getInitiatingPartyId());

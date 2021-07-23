@@ -164,7 +164,32 @@ class PaymentInformation
      */
     protected $dateFormat = 'Y-m-d';
 
-    public function __construct(string $id, string $originAccountIBAN, ?string $originAgentBIC, string $originName, string $originAccountCurrency = 'EUR')
+    /**
+     * @var string
+     */
+    protected $streetName;
+    /**
+     * @var string
+     */
+    protected $postalCode;
+    /**
+     * @var string
+     */
+    protected $townName;
+    /**
+     * @var string
+     */
+    protected $country;
+
+    public function __construct(string $id,
+                                string $originAccountIBAN,
+                                ?string $originAgentBIC,
+                                string $originName,
+                                string $originAccountCurrency = 'EUR',
+                                string $streetName,
+                                string $postalCode,
+                                string $townName,
+                                string $country)
     {
         $this->id = $id;
         $this->originAccountIBAN = $originAccountIBAN;
@@ -172,6 +197,10 @@ class PaymentInformation
         $this->originName = StringHelper::sanitizeString($originName);
         $this->originAccountCurrency = $originAccountCurrency;
         $this->dueDate = new \DateTime();
+        $this->streetName = $streetName;
+        $this->postalCode = $postalCode;
+        $this->townName = $townName;
+        $this->country = $country;
     }
 
 
@@ -408,5 +437,26 @@ class PaymentInformation
     public function setDueDateFormat(string $format): void
     {
         $this->dateFormat = $format;
+    }
+
+
+    public function getStreetName(): string
+    {
+        return $this->streetName;
+    }
+
+    public function getPostalCode(): string
+    {
+        return $this->postalCode;
+    }
+
+    public function getTownName(): string
+    {
+        return $this->townName;
+    }
+
+    public function getCountry(): string
+    {
+        return $this->country;
     }
 }

@@ -1,6 +1,6 @@
 {
-    "name": "harmonelo/sepa-xml",
-    "type": "library",
+    "name": "harmonelo/php-sepa-xml",
+    "type": "project",
     "description": "Creates an XML file for a Single Euro Payments Area (SEPA) Credit Transfer.",
     "keywords": ["banking", "sepa", "xml"],
     "license": "LGPL-3.0-or-later",

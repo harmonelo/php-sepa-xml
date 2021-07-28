@@ -122,7 +122,8 @@ class BaseTransferInformation implements TransferInformationInterface
                                 ?string $identification = null,
                                 string $streetName,
                                 string $postalCode,
-                                string $townName)
+                                string $townName,
+                                string $country)
     {
         if (null === $identification) {
             $identification = $name;
@@ -135,6 +136,7 @@ class BaseTransferInformation implements TransferInformationInterface
         $this->streetName = $streetName;
         $this->postalCode = $postalCode;
         $this->townName = $townName;
+        $this->country = $country;
     }
 
     public function accept(DomBuilderInterface $domBuilder): void

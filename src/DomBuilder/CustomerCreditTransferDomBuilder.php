@@ -168,13 +168,6 @@ class CustomerCreditTransferDomBuilder extends BaseDomBuilder
         $creditor = $this->createElement('Cdtr');
         $creditor->appendChild($this->createElement('Nm', $transactionInformation->getCreditorName()));
 
-        $address = $creditor->appendChild($this->createElement('PstlAdr'));
-
-        $address->appendChild($this->createElement('StrNm', $transactionInformation->getStreetName()));
-        $address->appendChild($this->createElement('PstCd', $transactionInformation->getPostalCode()));
-        $address->appendChild($this->createElement('TwnNm', $transactionInformation->getTownName()));
-        $address->appendChild($this->createElement('Ctry', $transactionInformation->getCountry()));
-
         // Creditor address if needed and supported by schema.
         if (in_array($this->painFormat, array('pain.001.001.03'))) {
             $this->appendAddressToDomElement($creditor, $transactionInformation);
@@ -268,6 +261,21 @@ class CustomerCreditTransferDomBuilder extends BaseDomBuilder
         // Gemerate country address node.
         if ((bool)$transactionInformation->getCountry()) {
             $postalAddress->appendChild($this->createElement('Ctry', $transactionInformation->getCountry()));
+        }
+
+        // Gemerate street name
+        if ((bool)$transactionInformation->getStreetName()) {
+            $postalAddress->appendChild($this->createElement('StrNm',$transactionInformation->getStreetName()));
+        }
+
+        // Gemerate postal code
+        if ((bool)$transactionInformation->getPostalCode()) {
+            $postalAddress->appendChild($this->createElement('PstCd',$transactionInformation->getPostalCode()));
+        }
+
+        // Gemerate town
+        if ((bool)$transactionInformation->getTownName()) {
+            $postalAddress->appendChild($this->createElement('TwnNm', $transactionInformation->getTownName()));
         }
 
         // Ensure $postalAddressData is an array as getPostalAddress() returns either string or string[].

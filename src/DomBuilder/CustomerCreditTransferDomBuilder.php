@@ -96,7 +96,7 @@ class CustomerCreditTransferDomBuilder extends BaseDomBuilder
 
         $address = $debtor->appendChild($this->createElement('PstlAdr'));
 
-        $address->appendChild($this->createElement('StrNm', $paymentInformation->getStreetName()));
+        $address->appendChild($this->createElement('StrtNm', $paymentInformation->getStreetName()));
         $address->appendChild($this->createElement('PstCd', $paymentInformation->getPostalCode()));
         $address->appendChild($this->createElement('TwnNm', $paymentInformation->getTownName()));
         $address->appendChild($this->createElement('Ctry', $paymentInformation->getCountry()));
@@ -265,7 +265,7 @@ class CustomerCreditTransferDomBuilder extends BaseDomBuilder
 
         // Gemerate street name
         if ((bool)$transactionInformation->getStreetName()) {
-            $postalAddress->appendChild($this->createElement('StrNm',$transactionInformation->getStreetName()));
+            $postalAddress->appendChild($this->createElement('StrtNm',$transactionInformation->getStreetName()));
         }
 
         // Gemerate postal code

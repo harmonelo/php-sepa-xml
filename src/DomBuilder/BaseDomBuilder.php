@@ -120,7 +120,7 @@ abstract class BaseDomBuilder implements DomBuilderInterface
 
         $address = $initiatingParty->appendChild($this->createElement('PstlAdr'));
 
-        $address->appendChild($this->createElement('StrNm', $groupHeader->getStreetName()));
+        $address->appendChild($this->createElement('StrtNm', $groupHeader->getStreetName()));
         $address->appendChild($this->createElement('PstCd', $groupHeader->getPostalCode()));
         $address->appendChild($this->createElement('TwnNm', $groupHeader->getTownName()));
         $address->appendChild($this->createElement('Ctry', $groupHeader->getCountry()));

@@ -113,6 +113,7 @@ class BaseTransferInformation implements TransferInformationInterface
      */
     protected $townName;
 
+
     /**
      * @param int $amount amount in cents
      */
@@ -123,7 +124,8 @@ class BaseTransferInformation implements TransferInformationInterface
                                 string $streetName,
                                 string $postalCode,
                                 string $townName,
-                                string $country)
+                                string $country
+                                )
     {
         if (null === $identification) {
             $identification = $name;

@@ -32,10 +32,11 @@ class RealLifeXMLTest extends TestCase
             null,
             'street',
             '00000',
-            'town'
+            'town',
+            'country'
         );
 
-        $transfer->setCountry('CZ');
+        //$transfer->setCountry('CZ');
         $transfer->setBic('OKOYFIHH'); // Set the BIC explicitly
         $transfer->setRemittanceInformation('Transaction Description');
         $transfer->setInstructionId(1);
